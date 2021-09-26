@@ -1,11 +1,15 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
+    agent { label 'master' }
+    stages {
+         stage('Checkout source') {
+        steps {
+            git branch: 'master',
+                credentialsId: 'github_1',
+                url: 'https://github.com/johndpotts/simple-java-maven-app.git'
+
+            sh "ls -lat"
         }
     }
-    stages {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
