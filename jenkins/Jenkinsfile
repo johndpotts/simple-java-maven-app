@@ -7,7 +7,7 @@ pipeline {
                 credentialsId: 'github_1',
                 url: 'https://github.com/johndpotts/simple-java-maven-app.git'
 
-            sh "ls -lat"
+            bat "ls -lat"
         }
     }
         stage('Build') {
